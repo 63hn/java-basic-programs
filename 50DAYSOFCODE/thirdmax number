@@ -1,0 +1,43 @@
+Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number.
+
+Example 1:
+Input: nums = [3,2,1]
+Output: 1
+Explanation:
+The first distinct maximum is 3.
+The second distinct maximum is 2.
+The third distinct maximum is 1.
+
+class Solution {
+    public int thirdMax(int[] nums) {
+        int n=nums.length;
+        long firstmax=Long.MIN_VALUE;   
+        long secondmax=Long.MIN_VALUE;   
+        long thirdmax=Long.MIN_VALUE;  
+        for(int i=0;i<=n-1;i++)
+        {
+            if (firstmax == nums[i] || secondmax == nums[i] || thirdmax == nums[i]) {
+                continue;
+            }
+            if(nums[i]>=firstmax)
+            {
+                 thirdmax=secondmax;
+                 secondmax=firstmax;
+                 firstmax=nums[i];
+            }
+            else if(secondmax<=nums[i] && firstmax>nums[i])
+            {
+                thirdmax = secondmax;
+                secondmax=nums[i];
+            }
+            else if(thirdmax<=nums[i] && secondmax>nums[i])
+            {
+                thirdmax=nums[i];
+            }
+        }
+        if (thirdmax == Long.MIN_VALUE) {
+            return (int) firstmax;
+        }
+    return (int) thirdmax;
+    }
+}
