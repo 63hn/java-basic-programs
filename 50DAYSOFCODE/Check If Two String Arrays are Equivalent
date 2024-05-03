@@ -19,19 +19,16 @@ Output: false
 
 class Solution {
     public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
-        int j=0;
-        int n=word1.length-1;
-        for(int i=0;i<=n;i++)
+        StringBuilder sb=new StringBuilder();
+        StringBuilder st=new StringBuilder();
+        for(String i:word1)
         {
-            if(word1[i].charAt(i)==word2[j].charAt(j))
-            {
-                j++;
-            }
-            else
-            {
-                return false;
-            }
+            sb.append(i);
         }
-    return true;
+        for(String j:word2)
+        {
+            st.append(j);
+        }
+    return sb.toString().equals(st.toString());
     }
 }
